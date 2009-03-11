@@ -1,4 +1,4 @@
-## $Id: CPP_PASTNodes.pir 31862 2008-10-10 18:23:45Z tene $
+## $Id$
 
 =head1 NAME
 

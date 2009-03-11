@@ -1,4 +1,4 @@
-# $Id: say.pir 27878 2008-05-28 14:44:03Z Whiteknight $
+# $Id$
 
 =head1
 
