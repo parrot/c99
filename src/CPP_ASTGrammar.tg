@@ -25,11 +25,11 @@ transform result (C99::CPP::ASTGrammar::group) :language('PIR') {
     unless $I0 goto err_no_tree
     $P0 = node['group_line']
 
-    .local pmc iter
-    iter = new Iterator, $P0
+    .local pmc it
+    it = iter $P0
   iter_loop:
-    unless iter, iter_end
-    $P1 = shift iter
+    unless it goto iter_end
+    $P1 = shift it
     child = tree.get('result', $P1, 'C99::CPP::ASTGrammar::group_line')
     result.add_child(child)
     goto iter_loop
@@ -96,14 +96,14 @@ transform result (C99::CPP::ASTGrammar::if_section) :language('PIR') {
     child = tree.get('result', $P0, 'C99::CPP::ASTGrammar::if_group')
     result.add_child(child)
     
-    .local pmc iter
+    .local pmc it
     $I0 = defined node['elif_group']
     unless $I0 goto else_group
     $P0 = node['elif_group']
-    iter = new Iterator, $P0
+    it = iter $P0
   iter_loop:
-    unless iter, iter_end
-    $P1 = shift iter
+    unless it goto iter_end
+    $P1 = shift it
     child = tree.get('result', $P1, 'C99::CPP::ASTGrammar::elif_group')
     result.add_child(child)
     goto iter_loop

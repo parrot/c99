@@ -77,11 +77,11 @@ needed for C99.  The currently defined ast nodes:
     setattribute self, 'children', children
 
     if null adverbs goto end
-    .local pmc iter
-    iter = new .Iterator, adverbs
+    .local pmc it
+    it = iter adverbs
   iter_loop:
-    unless iter goto iter_end
-    $S0 = shift iter
+    unless it goto iter_end
+    $S0 = shift it
     if $S0 == 'XXX' goto iter_loop
     $P0 = iter[$S0]
     $P1 = find_method self, $S0
@@ -164,8 +164,7 @@ needed for C99.  The currently defined ast nodes:
 
 .sub 'child_iter' :method
     $P0 = getattribute self, 'children'
-    $P1 = new .Iterator, $P0
-    $P1 = 0
+    $P1 = iter $P0
     .return ($P1)
 .end
 
@@ -237,15 +236,15 @@ counting at 10 (so that the values 0..9 can be considered "safe").
 
     (subindent, indent) = dumper.'newIndent'()
     print '=> { '
-.local pmc attrlist, iter
+    .local pmc attrlist, it
     $S0 = self.'__dumplist'()
     attrlist = split ' ', $S0
-    iter = new .Iterator, attrlist
+    it = iter attrlist
   iter_loop:
-    unless iter goto iter_end
+    unless it goto iter_end
     .local string attrname
     .local pmc val
-    attrname = shift iter
+    attrname = shift it
     val = getattribute self, attrname
     print "\n"
     print subindent
